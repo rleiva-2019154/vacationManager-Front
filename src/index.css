@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root{
+    font-family: 'Questrial';
+}
+
+@layer components{
+    .min-h-screen{
+        min-height: 100vh;
+    }
+}
+
+@font-face {
+    font-family: 'Questrial';
+    src: url('/src/assets/font/Questrial-Regular.ttf') format('woff2');
+}
