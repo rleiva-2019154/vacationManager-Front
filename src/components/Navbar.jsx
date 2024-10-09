@@ -17,7 +17,8 @@ import { Link } from "react-router-dom";
 const navigation = [{ name: "Inicio", href: "/" }];
 
 const authenticatedNavigation = [
-  { name: "Solicitar vacaciones", href: "/requestVacation" },
+  { name: "Solicitar vacaciones", href: "/vacationRequest" },
+  { name: "Solicitudes", href: "/getRequests"},
   { name: "Estado de solicitud", href: "/statusOfRequest" },
   { name: "Días disponibles", href: "/daysAviable" },
   { name: "Equipo", href: "/team" },
@@ -31,12 +32,14 @@ export const Navbar = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       setIsLoggedIn(true);
       setUsername(user.username);
+      setRole(user.role);
     }
   }, []);
 
@@ -107,9 +110,10 @@ export const Navbar = () => {
           </div>
           {isLoggedIn ? (
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <span className="text-gray-300 hover:cursor-pointer hover:text-white px-3 py-2 text-sm font-medium">
-                {username}
-              </span>
+              <div className="flex flex-col items-center text-gray-300 hover:cursor-pointer hover:text-white px-3 py-2 text-sm font-medium">
+                <span>{username}</span>
+                <span className="text-xs text-gray-400">({role})</span>
+              </div>
 
               {/* Profile dropdown */}
               <Menu as="div" className="relative ml-3">

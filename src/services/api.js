@@ -60,3 +60,39 @@ export const register = async (data) => {
         }
     }
 }
+
+export const getRequests = async () => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user || !user.uid || !user.token) {
+            throw new Error('No se encontró el UID o el token del usuario en localStorage');
+        }
+
+        // Asegúrate de que envías el token en los headers
+        const response = await apiClient.get(`/vacations/getUserVacationRequests/${user.uid}`, {
+            headers: {
+                Authorization: user.token,  // Enviar el token de autorización
+            },
+        });
+
+        return response.data;
+    } catch (e) {
+        const errorResponse = e.response?.data;
+
+        if (Array.isArray(errorResponse?.errors)) {
+            const errorMessage = errorResponse.errors[0]?.msg || 'Error al obtener las solicitudes';
+            return {
+                error: true,
+                message: errorMessage,
+            };
+        }
+
+        const errorMessage = errorResponse?.error || 'Falló al obtener las solicitudes';
+
+        return {
+            error: true,
+            message: errorMessage,
+        };
+    }
+};
