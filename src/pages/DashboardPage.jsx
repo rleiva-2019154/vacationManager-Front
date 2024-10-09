@@ -1,3 +1,4 @@
+import { Footer } from '../components/Footer'
 import { Navbar } from '../components/Navbar'
 
 export const DashboardPage = () => {
@@ -7,6 +8,7 @@ export const DashboardPage = () => {
       <div className='flex-1 overflow-hidden'>
         DashboardPage
       </div>
+      <Footer/>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-export const loguot = () =>{
+export const logout = () =>{
     localStorage.removeItem('user')
 
     window.location.href = '/'
