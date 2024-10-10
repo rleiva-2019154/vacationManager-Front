@@ -15,18 +15,20 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const navigation = [
-  { name: "Inicio", href: "/" }
+  
 ];
 
 
 const adminNavigation = [
-  { name: "Asignar rol", href: "/" },
-  { name: "Ver solicitudes", href: "/" },
-  { name: "Equipos", href: "/" },
-  { name: "Dias festivos", href: "/" }
+  { name: "Inicio", href: "/" },
+  { name: "Asignar rol", href: "/assignRole" },
+  { name: "Ver solicitudes", href: "/viewRequests" },
+  { name: "Equipos", href: "/teams" },
+  { name: "Dias festivos", href: "/holidays" }
 ];
 
 const bossNavigation = [
+  { name: "Inicio", href: "/" },
   { name: "Solicitar", href: "/vacationRequest" },
   { name: "Mis solicitudes", href: "/getRequests" },
   { name: "Ver solicitudes", href: "/" },
@@ -36,6 +38,7 @@ const bossNavigation = [
 ];
 
 const employeeNavigation = [
+  { name: "Inicio", href: "/" },
   { name: "Solicitar", href: "/vacationRequest" },
   { name: "Mis solicitudes", href: "/getRequests" },
   { name: "Estado de solicitud", href: "/statusOfRequest" },

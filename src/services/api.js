@@ -96,3 +96,52 @@ export const getRequests = async () => {
         };
     }
 };
+
+export const getUsers = async () => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user || !user.token) {
+            throw new Error('Token de usuario no encontrado');
+        }
+
+        const response = await apiClient.get("/auth/getUsers", {
+            headers: {
+                Authorization: user.token, 
+            },
+        });
+
+        return response.data;
+    } catch (e) {
+        const errorMessage = e.response?.data?.message || 'Error al obtener los usuarios';
+        throw new Error(errorMessage);
+    }
+};
+
+
+
+export const assignRole = async (userId, role) => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user || !user.token) {
+            throw new Error('Token de usuario no encontrado');
+        }
+
+        const response = await apiClient.post(
+            "/auth/assignRole",
+            { userId, role },
+            {
+                headers: {
+                    Authorization: user.token,
+                },
+            }
+        );
+
+        return response.data;
+    } catch (e) {
+        return {
+            error: true,
+            message: e.response?.data?.error || 'Error al asignar el rol',
+        };
+    }
+};
