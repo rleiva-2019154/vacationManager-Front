@@ -14,15 +14,36 @@ import { logout } from "../hooks/useLogout";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const navigation = [{ name: "Inicio", href: "/" }];
+const navigation = [
+  { name: "Inicio", href: "/" }
+];
 
-const authenticatedNavigation = [
-  { name: "Solicitar vacaciones", href: "/vacationRequest" },
-  { name: "Solicitudes", href: "/getRequests"},
+
+const adminNavigation = [
+  { name: "Asignar rol", href: "/" },
+  { name: "Ver solicitudes", href: "/" },
+  { name: "Equipos", href: "/" },
+  { name: "Dias festivos", href: "/" }
+];
+
+const bossNavigation = [
+  { name: "Solicitar", href: "/vacationRequest" },
+  { name: "Mis solicitudes", href: "/getRequests" },
+  { name: "Ver solicitudes", href: "/" },
+  { name: "Estado de solicitud", href: "/statusOfRequest" },
+  { name: "Días disponibles", href: "/daysAviable" },
+  { name: "Equipos", href: "/" },
+];
+
+const employeeNavigation = [
+  { name: "Solicitar", href: "/vacationRequest" },
+  { name: "Mis solicitudes", href: "/getRequests" },
   { name: "Estado de solicitud", href: "/statusOfRequest" },
   { name: "Días disponibles", href: "/daysAviable" },
   { name: "Equipo", href: "/team" },
 ];
+
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -42,6 +63,15 @@ export const Navbar = () => {
       setRole(user.role);
     }
   }, []);
+
+  let authenticatedNavigation = [];
+  if (role === "ADMIN") {
+    authenticatedNavigation = adminNavigation;
+  } else if (role === "BOSS") {
+    authenticatedNavigation = bossNavigation;
+  } else if (role === "EMPLOYEE") {
+    authenticatedNavigation = employeeNavigation;
+  }
 
   return (
     <Disclosure as="nav" className="bg-gray-700">
