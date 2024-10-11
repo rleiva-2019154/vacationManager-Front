@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Footer } from "../Footer";
 import { Navbar } from "../Navbar";
 import { CreateTeam } from './CreateTeam';
+import { ListTeams } from './ListTeams';  // Importar el nuevo componente
 /*import { EditTeam } from './EditTeam';
 import { DeleteTeam } from './DeleteTeam';
 import { AddMember } from './AddMember';
 import { RemoveMember } from './RemoveMember';
-import { EditTeamBoss } from './EditTeamBoss';
-import { ListTeams } from './ListTeams';*/
+import { EditTeamBoss } from './EditTeamBoss';*/
 
 export const Teams = () => {
     const [activeComponent, setActiveComponent] = useState(null); // Controla qué componente está activo
@@ -16,6 +16,8 @@ export const Teams = () => {
         switch (activeComponent) {
             case 'create':
                 return <CreateTeam />;
+            case 'listTeams':
+                return <ListTeams />;  // Renderizar el componente de listar equipos
             /*case 'edit':
                 return <EditTeam />;
             case 'delete':
@@ -25,9 +27,7 @@ export const Teams = () => {
             case 'removeMember':
                 return <RemoveMember />;
             case 'editBoss':
-                return <EditTeamBoss />;
-            case 'listTeams':
-                return <ListTeams />;*/
+                return <EditTeamBoss />;*/
             default:
                 return null;
         }
@@ -41,12 +41,12 @@ export const Teams = () => {
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                         {/* Botones para cambiar el componente activo */}
                         <button onClick={() => setActiveComponent('create')} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Crear Equipo</button>
+                        <button onClick={() => setActiveComponent('listTeams')} className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Listar Equipos</button>
                         <button onClick={() => setActiveComponent('edit')} className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Editar Equipo</button>
                         <button onClick={() => setActiveComponent('delete')} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Eliminar Equipo</button>
                         <button onClick={() => setActiveComponent('addMember')} className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Añadir Miembro</button>
                         <button onClick={() => setActiveComponent('removeMember')} className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">Eliminar Miembro</button>
                         <button onClick={() => setActiveComponent('editBoss')} className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Editar Jefe</button>
-                        <button onClick={() => setActiveComponent('listTeams')} className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Listar Equipos</button>
                     </div>
 
                     {/* Renderizar el componente activo */}

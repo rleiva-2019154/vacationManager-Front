@@ -196,3 +196,26 @@ export const getTeams = async () => {
         };
     }
 };
+
+export const getTeamMembersWithVacationDays = async (teamId) => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user || !user.token) {
+            throw new Error('Token de usuario no encontrado');
+        }
+
+        const response = await apiClient.get(`/teams/getTeamMembersWithVacationDays/${teamId}`, {
+            headers: {
+                Authorization: user.token,
+            },
+        });
+
+        return response.data;
+    } catch (e) {
+        throw new Error(e.response?.data?.message || 'Error al obtener los miembros del equipo');
+    }
+};
+
+
+
