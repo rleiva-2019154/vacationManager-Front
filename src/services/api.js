@@ -118,8 +118,6 @@ export const getUsers = async () => {
     }
 };
 
-
-
 export const assignRole = async (userId, role) => {
     try {
         const user = JSON.parse(localStorage.getItem("user"));
@@ -142,6 +140,59 @@ export const assignRole = async (userId, role) => {
         return {
             error: true,
             message: e.response?.data?.error || 'Error al asignar el rol',
+        };
+    }
+};
+
+export const createTeam = async (teamData) => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user || !user.token) {
+            throw new Error('Token de usuario no encontrado');
+        }
+
+        const response = await apiClient.post(
+            "/teams/createTeam",
+            teamData,
+            {
+                headers: {
+                    Authorization: user.token,
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
+        return response.data;
+    } catch (e) {
+        return {
+            error: true,
+            message: e.response?.data?.message || 'Error al crear el equipo',
+        };
+    }
+};
+
+
+export const getTeams = async () => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user || !user.token) {
+            throw new Error('Token de usuario no encontrado');
+        }
+
+        const response = await apiClient.get(
+            "/teams/getTeams",
+            {
+                headers: {
+                    Authorization: user.token,
+                },
+            }
+        );
+
+        return response.data;
+    } catch (e) {
+        return {
+            error: true,
+            message: e.response?.data?.message || 'Error al obtener equipos',
         };
     }
 };
