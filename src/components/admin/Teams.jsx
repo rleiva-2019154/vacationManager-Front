@@ -3,8 +3,8 @@ import { Footer } from "../Footer";
 import { Navbar } from "../Navbar";
 import { CreateTeam } from './CreateTeam';
 import { ListTeams } from './ListTeams';  // Importar el nuevo componente
-/*import { EditTeam } from './EditTeam';
-import { DeleteTeam } from './DeleteTeam';
+import { EditTeam } from './EditTeam';
+/*import { DeleteTeam } from './DeleteTeam';
 import { AddMember } from './AddMember';
 import { RemoveMember } from './RemoveMember';
 import { EditTeamBoss } from './EditTeamBoss';*/
@@ -18,9 +18,9 @@ export const Teams = () => {
                 return <CreateTeam />;
             case 'listTeams':
                 return <ListTeams />;  // Renderizar el componente de listar equipos
-            /*case 'edit':
+            case 'edit':
                 return <EditTeam />;
-            case 'delete':
+            /*case 'delete':
                 return <DeleteTeam />;
             case 'addMember':
                 return <AddMember />;

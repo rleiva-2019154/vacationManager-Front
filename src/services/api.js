@@ -217,5 +217,16 @@ export const getTeamMembersWithVacationDays = async (teamId) => {
     }
 };
 
-
-
+export const editTeam = async (teamId, teamData, token) => {
+    try {
+        const response = await apiClient.put(`/teams/editTeam/${teamId}`, teamData, {
+            headers: {
+                Authorization: token,  // Asegúrate de enviar solo el token, sin "Bearer"
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data; 
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Error al editar el equipo');
+    }
+};
