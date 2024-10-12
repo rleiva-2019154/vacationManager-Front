@@ -4,9 +4,9 @@ import { Navbar } from "../Navbar";
 import { CreateTeam } from './CreateTeam';
 import { ListTeams } from './ListTeams';  // Importar el nuevo componente
 import { EditTeam } from './EditTeam';
-/*import { DeleteTeam } from './DeleteTeam';
+/*import { DeleteTeam } from './DeleteTeam';*/
 import { AddMember } from './AddMember';
-import { RemoveMember } from './RemoveMember';
+/*import { RemoveMember } from './RemoveMember';
 import { EditTeamBoss } from './EditTeamBoss';*/
 
 export const Teams = () => {
@@ -21,10 +21,10 @@ export const Teams = () => {
             case 'edit':
                 return <EditTeam />;
             /*case 'delete':
-                return <DeleteTeam />;
+                return <DeleteTeam />;*/
             case 'addMember':
                 return <AddMember />;
-            case 'removeMember':
+            /*case 'removeMember':
                 return <RemoveMember />;
             case 'editBoss':
                 return <EditTeamBoss />;*/
