@@ -357,3 +357,24 @@ export const updateHolidayAPI = async (holidayId, data, token) => {
         throw new Error(error.response?.data?.message || 'Error al actualizar el festivo');
     }
 };
+
+export const requestVacationAPI = async (vacationData) => {
+    try {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user || !user.token) {
+            throw new Error('Token de usuario no encontrado');
+        }
+
+        const response = await apiClient.post('/vacations/addVacations', vacationData, {
+            headers: {
+                Authorization: user.token,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        return response.data; // Retorna los datos de la respuesta
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Error al solicitar vacaciones');
+    }
+};
+

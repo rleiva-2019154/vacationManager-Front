@@ -34,7 +34,7 @@ const bossNavigation = [
   { name: "Ver solicitudes", href: "/" },
   { name: "Estado de solicitud", href: "/statusOfRequest" },
   { name: "Días disponibles", href: "/daysAviable" },
-  { name: "Equipos", href: "/" },
+  { name: "Equipos", href: "/teams" },
 ];
 
 const employeeNavigation = [
