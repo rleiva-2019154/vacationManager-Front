@@ -329,3 +329,17 @@ export const getHolidaysAPI = async (token) => {
         throw new Error(error.response?.data?.message || 'Error al obtener festivos');
     }
 };
+
+export const deleteHolidayAPI = async (holidayId, token) => {
+    try {
+        const response = await apiClient.delete(`/holidays/deleteHoliday/${holidayId}`, {
+            headers: {
+                Authorization: token,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Error al eliminar el festivo');
+    }
+};

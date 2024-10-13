@@ -3,6 +3,7 @@ import { Footer } from "../Footer";
 import { Navbar } from "../Navbar";
 import { AddHoliday } from './AddHoliday';  
 import { ViewHolidays } from './ViewHolidays'
+import { DeleteHoliday } from './DeleteHoliday';
 
 export const Holidays = () => {
     const [activeComponent, setActiveComponent] = useState(null);  // Controla qué componente está activo
@@ -13,6 +14,8 @@ export const Holidays = () => {
                 return <AddHoliday />;
             case 'view':
                 return <ViewHolidays/>;
+            case 'delete':
+                return <DeleteHoliday/>
             default:
                 return null;
         }
