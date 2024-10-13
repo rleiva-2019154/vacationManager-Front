@@ -302,3 +302,16 @@ export const getTeamDetailsAPI = async (teamId, token) => {
     }
 };
 
+export const addHolidayAPI = async (holidayData, token) => {
+    try {
+        const response = await apiClient.post(`holidays/addHoliday`, holidayData, {
+            headers: {
+                Authorization: token,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Error al agregar festivo');
+    }
+};
