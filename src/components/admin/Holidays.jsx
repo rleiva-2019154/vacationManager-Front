@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Footer } from "../Footer";
 import { Navbar } from "../Navbar";
-import { AddHoliday } from './AddHoliday';  
+import { AddHoliday } from './AddHoliday';
 import { ViewHolidays } from './ViewHolidays'
 import { DeleteHoliday } from './DeleteHoliday';
+import { EditHoliday } from './EditHoliday';
 
 export const Holidays = () => {
     const [activeComponent, setActiveComponent] = useState(null);  // Controla qué componente está activo
@@ -13,9 +14,11 @@ export const Holidays = () => {
             case 'add':
                 return <AddHoliday />;
             case 'view':
-                return <ViewHolidays/>;
+                return <ViewHolidays />;
             case 'delete':
-                return <DeleteHoliday/>
+                return <DeleteHoliday />
+            case 'update':
+                return <EditHoliday />
             default:
                 return null;
         }
