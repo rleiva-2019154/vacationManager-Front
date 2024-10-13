@@ -343,3 +343,17 @@ export const deleteHolidayAPI = async (holidayId, token) => {
         throw new Error(error.response?.data?.message || 'Error al eliminar el festivo');
     }
 };
+
+export const updateHolidayAPI = async (holidayId, data, token) => {
+    try {
+        const response = await apiClient.put(`/holidays/updateHoliday/${holidayId}`, data, {
+            headers: {
+                Authorization: token,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Error al actualizar el festivo');
+    }
+};
