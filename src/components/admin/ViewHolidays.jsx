@@ -30,7 +30,13 @@ export const ViewHolidays = () => {
                             <h4 className="text-lg font-semibold text-blue-800 mb-2">{holiday.name}</h4>
                             <p className="text-blue-600">
                                 <i className="far fa-calendar-alt mr-2"></i>
-                                {new Date(holiday.date).toLocaleDateString()}
+                                {/* Mostrar la fecha correctamente con UTC */}
+                                {new Date(holiday.date).toLocaleDateString('es-ES', {
+                                    timeZone: 'UTC',
+                                    day: '2-digit',
+                                    month: '2-digit',
+                                    year: 'numeric'
+                                })}
                             </p>
                         </li>
                     ))}
