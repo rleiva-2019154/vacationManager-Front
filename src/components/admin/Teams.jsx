@@ -6,8 +6,8 @@ import { ListTeams } from './ListTeams';  // Importar el nuevo componente
 import { EditTeam } from './EditTeam';
 /*import { DeleteTeam } from './DeleteTeam';*/
 import { AddMember } from './AddMember';
-/*import { RemoveMember } from './RemoveMember';
-import { EditTeamBoss } from './EditTeamBoss';*/
+/*import { RemoveMember } from './RemoveMember';*/
+import { EditTeamLead } from './EditTeamLead';
 
 export const Teams = () => {
     const [activeComponent, setActiveComponent] = useState(null); // Controla qué componente está activo
@@ -25,9 +25,9 @@ export const Teams = () => {
             case 'addMember':
                 return <AddMember />;
             /*case 'removeMember':
-                return <RemoveMember />;
+                return <RemoveMember />;*/
             case 'editBoss':
-                return <EditTeamBoss />;*/
+                return <EditTeamLead />;
             default:
                 return null;
         }
