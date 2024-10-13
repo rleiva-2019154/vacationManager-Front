@@ -273,3 +273,32 @@ export const removeMemberFromTeamAPI = async (teamId, userId, token) => {
         throw new Error(error.response?.data?.message || 'Error al eliminar el miembro');
     }
 };
+
+export const deleteTeamAPI = async (teamId, token) => {
+    try {
+        const response = await apiClient.delete(`/teams/deleteTeam/${teamId}`, {
+            headers: {
+                Authorization: token,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data; // Devolver la respuesta si todo sale bien
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Error al eliminar el equipo');
+    }
+};
+
+export const getTeamDetailsAPI = async (teamId, token) => {
+    try {
+        const response = await apiClient.get(`/teams/getTeamById/${teamId}`, {
+            headers: {
+                Authorization: token,
+                'Content-Type': 'application/json',
+            },
+        });
+        return response.data.team; // Devolver los detalles del equipo
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Error al obtener detalles del equipo');
+    }
+};
+
