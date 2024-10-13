@@ -258,3 +258,18 @@ export const editTeamLead = async (teamId, bossId, token) => {
         throw new Error(error.response?.data?.message || 'Error al actualizar jefe');
     }
 };
+
+export const removeMemberFromTeamAPI = async (teamId, userId, token) => {
+    try {
+        const response = await apiClient.delete(`/teams/removeMemberFromTeam/${teamId}`, {
+            headers: {
+                Authorization: token,
+                'Content-Type': 'application/json',
+            },
+            data: { userId }  // Enviar el userId en el cuerpo de la solicitud DELETE
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Error al eliminar el miembro');
+    }
+};
