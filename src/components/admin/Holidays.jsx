@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Footer } from "../Footer";
 import { Navbar } from "../Navbar";
 import { AddHoliday } from './AddHoliday';  
+import { ViewHolidays } from './ViewHolidays'
 
 export const Holidays = () => {
     const [activeComponent, setActiveComponent] = useState(null);  // Controla qué componente está activo
@@ -11,6 +12,7 @@ export const Holidays = () => {
             case 'add':
                 return <AddHoliday />;
             case 'view':
+                return <ViewHolidays/>;
             default:
                 return null;
         }
