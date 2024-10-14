@@ -9,10 +9,9 @@ import { Holidays } from "./components/admin/Holidays";
 import { ViewRequests } from "./components/dashboard/ViewRequests";
 
 import { VacationRequest } from "./components/dashboard/VacationRequest";
-import { StatusOfRequest } from "./components/dashboard/StatusOfRequest";
 import { DaysAviable } from "./components/dashboard/DaysAviable";
 import { Team } from "./components/dashboard/Team";
-import { GetRequests } from "./components/dashboard/GetRequests";
+import { MyVacationRequests } from "./components/dashboard/MyVacationRequests";
 import { ProtectedRoute } from "./components/ProtectedRoute"
 
 const routes = [
@@ -62,18 +61,10 @@ const routes = [
         ),
     },
     {
-        path: "/getRequests",
+        path: "/myVacationRequests",
         element: (
             <ProtectedRoute allowedRoles={['BOSS', 'EMPLOYEE']}>
-                <GetRequests />
-            </ProtectedRoute>
-        ),
-    },
-    {
-        path: "/statusOfRequest",
-        element: (
-            <ProtectedRoute allowedRoles={['BOSS', 'EMPLOYEE']}>
-                <StatusOfRequest />
+                <MyVacationRequests/>
             </ProtectedRoute>
         ),
     },
