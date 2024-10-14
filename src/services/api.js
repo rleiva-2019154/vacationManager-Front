@@ -490,3 +490,26 @@ export const getVacationDaysAvailableAPI = async () => {
         throw new Error(error.response?.data?.message || "Error al obtener los días de vacaciones disponibles.");
     }
 };
+
+export const getUserTeams = async (uid) => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user || !user.token) {
+            throw new Error('Token de usuario no encontrado');
+        }
+
+        const response = await apiClient.get(`/teams/getUserTeams/${uid}`, {
+            headers: {
+                Authorization: user.token,  // Enviar el token de autorización
+            },
+        });
+
+        return response.data; // Retornar los datos de la respuesta
+    } catch (error) {
+        return {
+            error: true,
+            message: error.response?.data?.message || 'Error al obtener los equipos del usuario',
+        };
+    }
+};
