@@ -400,3 +400,38 @@ export const getRefusedRequestsAPI = async () => {
         };
     }
 };
+
+export const getPendingRequests = async () => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user || !user.uid || !user.token) {
+            throw new Error('No se encontró el UID o el token del usuario en localStorage');
+        }
+
+        const response = await apiClient.get(`/vacations/getPendingRequests`, {
+            headers: {
+                Authorization: user.token,  // Enviar el token de autorización
+            },
+        });
+
+        return response.data;
+    } catch (e) {
+        const errorResponse = e.response?.data;
+
+        if (Array.isArray(errorResponse?.errors)) {
+            const errorMessage = errorResponse.errors[0]?.msg || 'Error al obtener las solicitudes pendientes';
+            return {
+                error: true,
+                message: errorMessage,
+            };
+        }
+
+        const errorMessage = errorResponse?.error || 'Falló al obtener las solicitudes pendientes';
+
+        return {
+            error: true,
+            message: errorMessage,
+        };
+    }
+};
