@@ -470,3 +470,23 @@ export const getApprovedRequests = async () => {
         };
     }
 };
+
+export const getVacationDaysAvailableAPI = async () => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user || !user.token || !user.uid) {
+            throw new Error("No se encontró el UID o el token del usuario.");
+        }
+
+        const response = await apiClient.get(`/vacations/getVacationDaysAviable/${user.uid}`, {
+            headers: {
+                Authorization: user.token,
+            },
+        });
+
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || "Error al obtener los días de vacaciones disponibles.");
+    }
+};
