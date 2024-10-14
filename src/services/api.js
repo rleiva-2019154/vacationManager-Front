@@ -378,3 +378,25 @@ export const requestVacationAPI = async (vacationData) => {
     }
 };
 
+export const getRefusedRequestsAPI = async () => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        
+        if (!user || !user.token) {
+            throw new Error('Token de usuario no encontrado');
+        }
+
+        const response = await apiClient.get("/vacations/getRefusedRequests", {
+            headers: {
+                Authorization: user.token,  // Enviar el token de autorización
+            },
+        });
+
+        return response.data; // Retornar los datos de la respuesta
+    } catch (error) {
+        return {
+            error: true,
+            message: error.response?.data?.message || 'Error al obtener las solicitudes rechazadas',
+        };
+    }
+};
