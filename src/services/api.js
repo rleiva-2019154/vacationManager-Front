@@ -386,7 +386,7 @@ export const getRefusedRequestsAPI = async () => {
             throw new Error('Token de usuario no encontrado');
         }
 
-        const response = await apiClient.get("/vacations/getRefusedRequests", {
+        const response = await apiClient.get(`/vacations/getRefusedRequests/${user.uid}`, {
             headers: {
                 Authorization: user.token,  // Enviar el token de autorización
             },
@@ -409,7 +409,7 @@ export const getPendingRequests = async () => {
             throw new Error('No se encontró el UID o el token del usuario en localStorage');
         }
 
-        const response = await apiClient.get(`/vacations/getPendingRequests`, {
+        const response = await apiClient.get(`/vacations/getPendingRequests/${user.uid}`, {
             headers: {
                 Authorization: user.token,  // Enviar el token de autorización
             },
@@ -444,7 +444,7 @@ export const getApprovedRequests = async () => {
             throw new Error('No se encontró el UID o el token del usuario en localStorage');
         }
 
-        const response = await apiClient.get(`/vacations/getApprovedRequests`, {
+        const response = await apiClient.get(`/vacations/getApprovedRequests/${user.uid}`, {
             headers: {
                 Authorization: user.token,  // Enviar el token de autorización
             },
