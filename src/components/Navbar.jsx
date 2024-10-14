@@ -30,9 +30,8 @@ const adminNavigation = [
 const bossNavigation = [
   { name: "Inicio", href: "/" },
   { name: "Solicitar", href: "/vacationRequest" },
-  { name: "Mis solicitudes", href: "/getRequests" },
+  { name: "Mis solicitudes", href: "/MyVacationRequests" },
   { name: "Ver solicitudes", href: "/viewRequests" },
-  { name: "Estado de solicitud", href: "/statusOfRequest" },
   { name: "Días disponibles", href: "/daysAviable" },
   { name: "Equipos", href: "/" },
 ];
@@ -40,8 +39,7 @@ const bossNavigation = [
 const employeeNavigation = [
   { name: "Inicio", href: "/" },
   { name: "Solicitar", href: "/vacationRequest" },
-  { name: "Mis solicitudes", href: "/getRequests" },
-  { name: "Estado de solicitud", href: "/statusOfRequest" },
+  { name: "Mis solicitudes", href: "/MyVacationRequests" },
   { name: "Días disponibles", href: "/daysAviable" },
   { name: "Equipo", href: "/team" },
 ];
