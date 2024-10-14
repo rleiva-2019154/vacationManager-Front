@@ -3,9 +3,10 @@ import { AuthPage } from "./pages/AuthPage"
 import { NotFound } from "./pages/NotFound"
 
 import { AssignRole } from "./components/admin/AssignRole";
-import { ViewRequests } from "./components/admin/ViewRequests";
 import { Teams } from "./components/admin/Teams";
 import { Holidays } from "./components/admin/Holidays";
+
+import { ViewRequests } from "./components/dashboard/ViewRequests";
 
 import { VacationRequest } from "./components/dashboard/VacationRequest";
 import { StatusOfRequest } from "./components/dashboard/StatusOfRequest";
@@ -30,7 +31,7 @@ const routes = [
     { 
         path: "/viewRequests",
         element: (
-            <ProtectedRoute allowedRoles={['ADMIN']}>
+            <ProtectedRoute allowedRoles={['ADMIN', 'BOSS']}>
                 <ViewRequests/>
             </ProtectedRoute>
         )

@@ -31,10 +31,10 @@ const bossNavigation = [
   { name: "Inicio", href: "/" },
   { name: "Solicitar", href: "/vacationRequest" },
   { name: "Mis solicitudes", href: "/getRequests" },
-  { name: "Ver solicitudes", href: "/" },
+  { name: "Ver solicitudes", href: "/viewRequests" },
   { name: "Estado de solicitud", href: "/statusOfRequest" },
   { name: "Días disponibles", href: "/daysAviable" },
-  { name: "Equipos", href: "/teams" },
+  { name: "Equipos", href: "/" },
 ];
 
 const employeeNavigation = [
