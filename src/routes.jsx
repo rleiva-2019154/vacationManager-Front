@@ -7,6 +7,7 @@ import { Teams } from "./components/admin/Teams";
 import { Holidays } from "./components/admin/Holidays";
 
 import { ViewRequests } from "./components/dashboard/ViewRequests";
+import { ViewRequestForBoss } from "./components/boss/ViewRequestForBoss";
 
 import { VacationRequest } from "./components/dashboard/VacationRequest";
 import { DaysAviable } from "./components/dashboard/DaysAviable";
@@ -19,35 +20,43 @@ const routes = [
     { path: "/", element: <DashboardPage /> },
     { path: "/*", element: <NotFound /> },
 
-    { 
+    {
         path: "/assignRole",
         element: (
             <ProtectedRoute allowedRoles={['ADMIN']}>
-                <AssignRole/>
+                <AssignRole />
             </ProtectedRoute>
         )
     },
-    { 
+    {
         path: "/viewRequests",
         element: (
-            <ProtectedRoute allowedRoles={['ADMIN', 'BOSS']}>
-                <ViewRequests/>
+            <ProtectedRoute allowedRoles={['ADMIN']}>
+                <ViewRequests />
             </ProtectedRoute>
         )
     },
-    { 
+    {
+        path: "/viewRequestForBoss",
+        element: (
+            <ProtectedRoute allowedRoles={['BOSS']}>
+                <ViewRequestForBoss />
+            </ProtectedRoute>
+        )
+    },
+    {
         path: "/teams",
         element: (
             <ProtectedRoute allowedRoles={['ADMIN']}>
-                <Teams/>
+                <Teams />
             </ProtectedRoute>
         )
     },
-    { 
+    {
         path: "/holidays",
         element: (
             <ProtectedRoute allowedRoles={['ADMIN']}>
-                <Holidays/>
+                <Holidays />
             </ProtectedRoute>
         )
     },
@@ -64,7 +73,7 @@ const routes = [
         path: "/myVacationRequests",
         element: (
             <ProtectedRoute allowedRoles={['BOSS', 'EMPLOYEE']}>
-                <MyVacationRequests/>
+                <MyVacationRequests />
             </ProtectedRoute>
         ),
     },
