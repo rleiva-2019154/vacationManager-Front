@@ -561,3 +561,84 @@ export const getApprovedBossRequestsAPI = async () => {
     }
 };
 
+export const getRejectedRequestsAPI = async () => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user || !user.token) {
+            throw new Error("No se encontró el token del usuario");
+        }
+
+        const response = await apiClient.get("vacations/getRefuseBossRequests", {
+            headers: {
+                Authorization: user.token,  // Asegúrate de enviar el token de autorización
+            },
+        });
+
+        return response.data; // Asegúrate de que esto esté retornando el formato correcto
+    } catch (error) {
+        console.error("Error al obtener las solicitudes rechazadas del boss:", error);
+        return {
+            error: true,
+            message: error.response?.data?.message || "Error al obtener las solicitudes rechazadas",
+        };
+    }
+};
+
+export const getPendingBossRequestsAPI = async () => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user || !user.token) {
+            throw new Error("No se encontró el token del usuario");
+        }
+
+        const response = await apiClient.get("/vacations/getPendingBossRequests", {
+            headers: {
+                Authorization: user.token,  // Asegúrate de enviar el token de autorización
+            },
+        });
+
+        return response.data; // Devolver los datos de la respuesta
+    } catch (error) {
+        console.error("Error al obtener las solicitudes pendientes de los jefes:", error);
+        return {
+            error: true,
+            message: error.response?.data?.message || "Error al obtener las solicitudes pendientes",
+        };
+    }
+};
+
+// Función para aprobar una solicitud de vacaciones
+export const approveVacationAPI = async (requestId, token, approvalComments) => {
+    try {
+        const response = await apiClient.put(`/vacations/approveVacationBoss/${requestId}`, 
+        { approvalComments }, 
+        {
+            headers: {
+                Authorization: token, // Asegúrate de enviar el token de autorización
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error al aprobar la solicitud:', error);
+        throw error;
+    }
+};
+
+// Función para rechazar una solicitud de vacaciones
+export const refuseVacationAPI = async (requestId, token, rejectedComments) => {
+    try {
+        const response = await apiClient.put(`/vacations/refuseVacationBoss/${requestId}`, 
+        { rejectedComments }, 
+        {
+            headers: {
+                Authorization: token, // Asegúrate de enviar el token de autorización
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error al rechazar la solicitud:', error);
+        throw error;
+    }
+};
