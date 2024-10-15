@@ -632,6 +632,30 @@ export const getRejectedRequestsAPI = async () => {
     }
 };
 
+export const getRejectedRequestsEmployeesAPI = async () => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user || !user.token) {
+            throw new Error("No se encontró el token del usuario");
+        }
+
+        const response = await apiClient.get("vacations/getRefuseEmployeeRequests", {
+            headers: {
+                Authorization: user.token,  // Asegúrate de enviar el token de autorización
+            },
+        });
+
+        return response.data; // Asegúrate de que esto esté retornando el formato correcto
+    } catch (error) {
+        console.error("Error al obtener las solicitudes rechazadas del boss:", error);
+        return {
+            error: true,
+            message: error.response?.data?.message || "Error al obtener las solicitudes rechazadas",
+        };
+    }
+};
+
 export const getPendingBossRequestsAPI = async () => {
     try {
         const user = JSON.parse(localStorage.getItem("user"));
