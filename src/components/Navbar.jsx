@@ -31,7 +31,7 @@ const bossNavigation = [
   { name: "Inicio", href: "/" },
   { name: "Solicitar", href: "/vacationRequest" },
   { name: "Mis solicitudes", href: "/MyVacationRequests" },
-  { name: "Ver solicitudes", href: "/viewRequests" },
+  { name: "Ver solicitudes", href: "/viewRequestForBoss" },
   { name: "Días disponibles", href: "/daysAviable" },
   { name: "Equipos", href: "/team" },
 ];
