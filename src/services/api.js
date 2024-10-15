@@ -514,6 +514,29 @@ export const getUserTeams = async (uid) => {
     }
 };
 
+export const getTeamMembersAPI = async (teamId) => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user || !user.token) {
+            throw new Error('Token de usuario no encontrado');
+        }
+
+        const response = await axios.get(`/teams/getTeamMembersWithVacationDays/${teamId}`, {
+            headers: {
+                Authorization: user.token,
+            },
+        });
+
+        return response.data;
+    } catch (error) {
+        return {
+            error: true,
+            message: error.response?.data?.message || 'Error al obtener los miembros del equipo',
+        };
+    }
+};
+
 export const getBossVacationRequests = async () => {
     try {
         const user = JSON.parse(localStorage.getItem('user'));
