@@ -513,3 +513,26 @@ export const getUserTeams = async (uid) => {
         };
     }
 };
+
+export const getBossVacationRequests = async () => {
+    try {
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        if (!user || !user.token) {
+            throw new Error('No se encontró el token del usuario');
+        }
+
+        const response = await apiClient.get('/vacations/getBossVacationRequests', {
+            headers: {
+                Authorization: user.token, // Asegúrate de enviar el token
+            },
+        });
+
+        return response.data;
+    } catch (error) {
+        return {
+            error: true,
+            message: error.response?.data?.message || 'Error al obtener las solicitudes de los jefes',
+        };
+    }
+};

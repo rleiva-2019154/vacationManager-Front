@@ -3,23 +3,23 @@ import { Footer } from "../Footer";
 import { Navbar } from "../Navbar";
 import { PendingRequest } from "./PendingRequest";
 import { ApprovedRequests } from "./ApprovedRequests";
-import { SeeAllRequests } from "./SeeAllRequests";
+import { SeeAllRequests } from "./SeeAllRequests"; // Importa el nuevo componente
 
 export const ViewRequests = () => {
     const [activeComponent, setActiveComponent] = useState(null); // Controla qué componente está activo
 
-    const renderComponent = () =>{
-        switch (activeComponent){
+    const renderComponent = () => {
+        switch (activeComponent) {
             case 'pending':
-                return <PendingRequest/>
+                return <PendingRequest />;
             case 'approved':
-                return <ApprovedRequests/>
+                return <ApprovedRequests />;
             case 'seeAllRequests':
-                return <SeeAllRequests/>
+                return <SeeAllRequests />; // Muestra todas las solicitudes
             default:
                 return null;
         }
-    }
+    };
 
     return (
         <div className="flex flex-col bg-slate-100 h-screen overflow-hidden">
