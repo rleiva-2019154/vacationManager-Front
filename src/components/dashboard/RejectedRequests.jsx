@@ -44,6 +44,14 @@ export const RejectedRequests = () => {
                                         color="textSecondary"
                                         className="text-sm mb-3"
                                     >
+                                        <span className="font-bold">Solicitante: </span>
+                                        {request.uid?.name || 'Usuario desconocido'} {/* Nombre del solicitante */}
+                                    </Typography>
+                                    <Typography 
+                                        variant="body2" 
+                                        color="textSecondary"
+                                        className="text-sm mb-3"
+                                    >
                                         <span className="font-bold">Estado: </span>
                                         <span className="text-red-500">{request.status}</span>
                                     </Typography>
