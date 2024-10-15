@@ -3,7 +3,8 @@ import { Footer } from "../Footer";
 import { Navbar } from "../Navbar";
 import { PendingRequest } from "./PendingRequest";
 import { ApprovedRequests } from "./ApprovedRequests";
-import { SeeAllRequests } from "./SeeAllRequests"; // Importa el nuevo componente
+import { SeeAllRequests } from "./SeeAllRequests";
+import { RejectedRequests } from "./RejectedRequests"; // Importa el nuevo componente
 
 export const ViewRequests = () => {
     const [activeComponent, setActiveComponent] = useState(null); // Controla qué componente está activo
@@ -14,8 +15,10 @@ export const ViewRequests = () => {
                 return <PendingRequest />;
             case 'approved':
                 return <ApprovedRequests />;
+            case 'rejected':
+                return <RejectedRequests />; // Muestra las solicitudes rechazadas
             case 'seeAllRequests':
-                return <SeeAllRequests />; // Muestra todas las solicitudes
+                return <SeeAllRequests />;
             default:
                 return null;
         }
@@ -26,10 +29,11 @@ export const ViewRequests = () => {
             <Navbar className="fixed top-0 left-0 right-0 h-16" />
             <div className="flex-1 overflow-auto p-4">
                 <div className="flex flex-col flex-1 items-center mt-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {/* Botones para cambiar el componente activo */}
                         <button onClick={() => setActiveComponent('pending')} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Solicitudes pendientes</button>
                         <button onClick={() => setActiveComponent('approved')} className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Solicitudes aprobadas</button>
+                        <button onClick={() => setActiveComponent('rejected')} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Solicitudes rechazadas</button> {/* Nuevo botón para solicitudes rechazadas */}
                         <button onClick={() => setActiveComponent('seeAllRequests')} className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Ver todas las solicitudes</button>
                     </div>
 
