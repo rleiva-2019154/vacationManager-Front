@@ -536,3 +536,28 @@ export const getBossVacationRequests = async () => {
         };
     }
 };
+
+export const getApprovedBossRequestsAPI = async () => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user || !user.token) {
+            throw new Error("No se encontró el token del usuario");
+        }
+
+        const response = await apiClient.get("vacations/getApprovedBossRequests", {
+            headers: {
+                Authorization: user.token,  // Asegúrate de enviar el token de autorización
+            },
+        });
+
+        return response.data;
+    } catch (error) {
+        console.error("Error al obtener las solicitudes aprobadas del boss:", error);
+        return {
+            error: true,
+            message: error.response?.data?.message || "Error al obtener las solicitudes aprobadas",
+        };
+    }
+};
+
